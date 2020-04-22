@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Alterar senha de acesso </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{{ style('../../plugins/fontawesome-free/css/all.min.css') }}
+	{{ style('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}
+	{{ style('../../plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}
+	{{ style('../../dist/css/adminlte.min.css') }}
+	{{ style('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }}
+
+</head>
+<body class="hold-transition login-page">
+	<div class="login-box">
+		<div class="login-logo">
+			<a href="{{ route('/') }}"><b>Painel de </b>controle</a>
+		</div>
+		<div class="card">
+			<div class="card-body login-card-body">
+				<p class="login-box-msg">Altere a senha de acesso</p>
+
+				@include('includes.notification')
+
+				<form action="{{ route('/password/reset') }}" method="post">
+
+					{{ csrfField() }}
+
+					<input type="hidden" name="token" value="{{ token }}">
+
+					<div class="input-group mt-3">
+						<input type="email"
+							class="form-control input {{ hasErrorFor('email') ? 'text-danger' : '' }}"
+							placeholder="E-mail"
+							name="email"
+						/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+					</div>
+					{{ elIf('<small class="text-danger">$self</small>', getErrorFor('email'), hasErrorFor('email')) }}
+
+					<div class="input-group mt-3">
+						<input type="password"
+							class="form-control input {{ hasErrorFor('password') ? 'text-danger' : '' }}"
+							placeholder="Senha"
+							name="password"
+						/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					{{ elIf('<small class="text-danger">$self</small>', getErrorFor('password'), hasErrorFor('password')) }}
+
+					<div class="input-group mt-3">
+						<input
+							type="password"
+							class="form-control input {{ hasErrorFor('password_confirmation') ? 'text-danger' : '' }}"
+							placeholder="Confirme"
+							name="password_confirmation"
+						/>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					{{ elIf('<small class="text-danger">$self</small>', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}
+
+					<div class="row">
+						<div class="col-12 mt-3">
+							<button type="submit" class="btn btn-primary btn-block">Alterar senha</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	{{ script('../../plugins/jquery/jquery.min.js') }}
+	{{ script('../../plugins/bootstrap/js/bootstrap.bundle.min.js') }}
+	{{ script('../../dist/js/adminlte.min.js') }}
+
+</body>
+</html>

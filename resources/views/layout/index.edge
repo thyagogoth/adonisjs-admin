@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>
+		@if(config.title)
+		{{ config.title }}
+		@else
+		Painel de Controle
+		@endif
+	</title>
+
+	{{ style('plugins/fontawesome-free/css/all.min.css') }}
+	{{ style('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}
+
+	<!-- DataTables -->
+	{{ style('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}
+	{{ style('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}
+
+	{{ style('dist/css/adminlte.min.css') }}
+
+	{{ style('dist/css/style.css') }}
+	{{ style('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }}
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
+	<div class="wrapper">
+		<!-- TOP Navbar -->
+		@include('layout/top-navbar')
+		<!-- /.TOP navbar -->
+
+		<!-- Main Sidebar Container -->
+		@include('layout/left-menu')
+
+		<!-- Content Wrapper. Contains page content -->
+		@!section('content')
+		<!-- /.content-wrapper -->
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<strong>Copyright &copy; {{ config.YEAR }} <a href="http://adminlte.io">Painel de controle</a>.</strong>
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 1.0
+			</div>
+		</footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+	<!-- jQuery -->
+	{{ script('plugins/jquery/jquery.min.js') }}
+	{{ script('plugins/bootstrap/js/bootstrap.bundle.min.js') }}
+
+	{{ script('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}
+	{{ script('dist/js/adminlte.js') }}
+
+	{{ script('plugins/datatables/jquery.dataTables.min.js') }}
+	{{ script('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}
+	{{ script('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}
+	{{ script('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}
+
+	{{ script('plugins/jquery-mousewheel/jquery.mousewheel.js') }}
+	{{ script('plugins/raphael/raphael.min.js') }}
+	{{ script('plugins/jquery-mapael/jquery.mapael.min.js') }}
+	{{ script('plugins/jquery-mapael/maps/usa_states.min.js') }}
+	{{ script('plugins/chart.js/Chart.min.js') }}
+	{{ script('dist/js/pages/dashboard2.js') }}
+
+	<script>
+		$(function () {
+			if ( $('.datatable-list').length > 0 ) {
+				$('.datatable-list').DataTable({
+					"paging": true,
+					"lengthChange": false,
+					"searching": false,
+					"ordering": true,
+					"info": true,
+					"autoWidth": false,
+					"responsive": true,
+				});
+			}
+		});
+	</script>
+</body>
+</html>

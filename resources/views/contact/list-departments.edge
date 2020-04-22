@@ -1,0 +1,82 @@
+@layout('layout.index')
+
+@section('content')
+
+<div class="content-wrapper pt-3">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Departamentos</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">DataTables</li>
+					</ol>
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+
+	<section class="content">
+		<div class="row">
+			<div class="col-12">
+
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">DataTable with default features</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+						@include('includes.notification')
+
+						<table class="datatable-list table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Departamento</th>
+									<th>E-mail</th>
+									<th>Ativo</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								@each(department in departments)
+								<tr>
+									<td>{{ department.id }}</td>
+									<td>{{ department.title }}</td>
+									<td>{{ department.email }}</td>
+									<td>
+										@if( department.is_active == 1)
+										Sim
+										@else
+										Não
+										@endif
+									</td>
+									<td>
+										<a href="/contacts/departments/edit/{{ department.id }}" class="text-white btn btn-secondary">Editar</a>
+										<a href="/contacts/departments/delete/{{ department.id }}" class="text-white btn btn-danger">Excluir</a>
+									</td>
+								</tr>
+								@endeach
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>ID</th>
+									<th>Departamento</th>
+									<th>E-mail</th>
+									<th>Ativo</th>
+									<th>&nbsp;</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+</div>
+
+@endsection
