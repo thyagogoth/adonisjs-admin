@@ -6,7 +6,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Edição de cadastro</h1>
+					<h1>Novo item</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -31,7 +31,7 @@
 							<div class="col-md-6">
 								@include('includes.notification')
 
-								<form action="/contacts/departments/edit/{{ department.id }}" role="form" id="quickForm" novalidate="novalidate" method="post">
+								<form action="/contacts/departments/new" role="form" id="quickForm" novalidate="novalidate" method="post">
 
 									{{ csrfField() }}
 
@@ -39,12 +39,12 @@
 
 										<div class="form-group">
 											<label for="title">Departamento</label>
-											<input type="text" name="title" class="form-control" id="title" placeholder="Nome do departamento" value="{{ department.title }}" />
+											<input type="text" name="title" class="form-control" id="title" placeholder="Nome do departamento" value="{{ department.title ? department.title : '' }}" />
 										</div>
 
 										<div class="form-group">
 											<label for="email">E-mail</label>
-											<input type="email" name="email" class="form-control" id="email" placeholder="E-mail" value="{{ department.email }}" />
+											<input type="email" name="email" class="form-control" id="email" placeholder="E-mail" value="{{ department.email ? department.email : '' }}" />
 										</div>
 
 										<div class="form-group">
@@ -60,6 +60,7 @@
 
 									</div>
 									<div class="card-footer">
+										<a class="btn btn-default" href="/contacts/departments">Cancelar</a>
 										<button type="submit" class="btn btn-primary">Enviar</button>
 									</div>
 								</form>

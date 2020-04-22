@@ -72,20 +72,31 @@
 	{{ script('plugins/jquery-mapael/jquery.mapael.min.js') }}
 	{{ script('plugins/jquery-mapael/maps/usa_states.min.js') }}
 	{{ script('plugins/chart.js/Chart.min.js') }}
-	{{ script('dist/js/pages/dashboard2.js') }}
+
+	@if(request.url() == '/')
+		{{ script('dist/js/pages/dashboard2.js') }}
+	@endif
 
 	<script>
 		$(function () {
 			if ( $('.datatable-list').length > 0 ) {
+
 				$('.datatable-list').DataTable({
-					"paging": true,
+					"paging": false,
 					"lengthChange": false,
-					"searching": false,
+					"searching": true,
 					"ordering": true,
-					"info": true,
-					"autoWidth": false,
-					"responsive": true,
+					"info": false,
+					"autoWidth": true,
+					"language": {
+						"lengthMenu": "Exibir _MENU_ registros por página",
+						"zeroRecords": "Não há cadastros para exibir :(",
+						"info": "Exibindo página _PAGE_ de _PAGES_",
+						"infoEmpty": "Nenhum registro encontrado :(",
+						"infoFiltered": "(filtered from _MAX_ total records)"
+					},
 				});
+
 			}
 		});
 	</script>

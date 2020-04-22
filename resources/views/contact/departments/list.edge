@@ -7,29 +7,30 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Departamentos</h1>
+					<h1>Novo item</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">DataTables</li>
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/contacts/messages">Contato</a></li>
+						<li class="breadcrumb-item active">Departamentos</li>
 					</ol>
 				</div>
 			</div>
-		</div><!-- /.container-fluid -->
+		</div>
 	</section>
 
 	<section class="content">
 		<div class="row">
 			<div class="col-12">
+				@include('includes.notification')
 
 				<div class="card">
-					<div class="card-header">
-						<h3 class="card-title">DataTable with default features</h3>
-					</div>
-					<!-- /.card-header -->
+
 					<div class="card-body">
-						@include('includes.notification')
+						<a href="/contacts/departments/new" class="btn btn-info">
+							<i class="fas fa-plus"></i> Novo cadastro
+						</a>
 
 						<table class="datatable-list table table-bordered table-striped">
 							<thead>
@@ -38,6 +39,7 @@
 									<th>Departamento</th>
 									<th>E-mail</th>
 									<th>Ativo</th>
+									<th>Data cadastro</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -54,8 +56,9 @@
 										Não
 										@endif
 									</td>
+									<td>{{ department.created_at }}</td>
 									<td>
-										<a href="/contacts/departments/edit/{{ department.id }}" class="text-white btn btn-secondary">Editar</a>
+										<a href="/contacts/departments/update/{{ department.id }}" class="text-white btn btn-secondary">Editar</a>
 										<a href="/contacts/departments/delete/{{ department.id }}" class="text-white btn btn-danger">Excluir</a>
 									</td>
 								</tr>

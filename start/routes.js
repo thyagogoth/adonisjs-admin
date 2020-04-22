@@ -25,20 +25,20 @@ let config = {
 Route.group(() => {
 	Route.on('/').render('pages/home', { config })
 
-	Route.get('/profile', 'Profile/ProfileController.showProfileForm')
+	// Route.get('/profile', 'Profile/ProfileController.showProfileForm')
 
 	/**
 	 * CONTATOS
 	 * 	Departamentos
 	 */
-	// List Itens
-	Route.get('contacts/departments', 'Contact/DepartmentController.index')
-	// Edit Item
-	Route.get('contacts/departments/edit/:id', 'Contact/DepartmentController.showEditForm')
-	// Save Edited Item
-	Route.post('contacts/departments/edit/:id', 'Contact/DepartmentController.edit')
+	Route.get('contacts/departments', 'Contact/DepartmentController.index') // List items
 
-	Route.get('contacts/departments/delete/:id', 'Contact/DepartmentController.remove')
+	Route.get('contacts/departments/new', 'Contact/DepartmentController.showCreateForm') // Show Edit Form
+	Route.post('contacts/departments/new', 'Contact/DepartmentController.store') // Save Edited Item
+
+	Route.get('contacts/departments/update/:id', 'Contact/DepartmentController.showUpdateForm') // Show Edit Form
+	Route.post('contacts/departments/update/:id', 'Contact/DepartmentController.update') // Save Edited Item
+	Route.get('contacts/departments/delete/:id', 'Contact/DepartmentController.destroy') // Remove item
 
 	Route.get('contacts/messages', 'Contact/DepartmentController.index')
 
