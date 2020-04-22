@@ -7,13 +7,13 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Departamentos</h1>
+					<h1>Mensagens</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
 						<li class="breadcrumb-item"><a href="/contacts/messages">Contato</a></li>
-						<li class="breadcrumb-item active">Departamentos</li>
+						<li class="breadcrumb-item active">Mensagens</li>
 					</ol>
 				</div>
 			</div>
@@ -28,38 +28,35 @@
 				<div class="card">
 
 					<div class="card-body">
-						<a href="/contacts/departments/new" class="btn btn-info">
-							<i class="fas fa-plus"></i> Novo cadastro
-						</a>
 
 						<table class="datatable-list table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Departamento</th>
+									<th>Nome</th>
 									<th>E-mail</th>
-									<th>Ativo</th>
+									<th>Lida?</th>
 									<th>Data cadastro</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody>
-								@each(department in departments)
+								@each(message in messages)
 								<tr>
-									<td>{{ department.id }}</td>
-									<td>{{ department.title }}</td>
-									<td>{{ department.email }}</td>
+									<td>{{ message.id }}</td>
+									<td>{{ message.name }}</td>
+									<td>{{ message.email }}</td>
 									<td>
-										@if( department.is_active == 1)
+										@if( message.is_active == 1)
 										Sim
 										@else
 										Não
 										@endif
 									</td>
-									<td>{{ department.created_at }}</td>
+									<td>{{ message.created_at }}</td>
 									<td>
-										<a href="/contacts/departments/update/{{ department.id }}" class="text-white btn btn-secondary">Editar</a>
-										<a href="/contacts/departments/delete/{{ department.id }}" class="text-white btn btn-danger">Excluir</a>
+										<a href="/contacts/messages/view/{{ message.id }}" class="text-white btn btn-secondary">visualizar</a>
+										<a href="/contacts/messages/delete/{{ message.id }}" class="text-white btn btn-danger">Excluir</a>
 									</td>
 								</tr>
 								@endeach
@@ -67,9 +64,10 @@
 							<tfoot>
 								<tr>
 									<th>ID</th>
-									<th>Departamento</th>
+									<th>Nome</th>
 									<th>E-mail</th>
-									<th>Ativo</th>
+									<th>Lida?</th>
+									<th>Data cadastro</th>
 									<th>&nbsp;</th>
 								</tr>
 							</tfoot>

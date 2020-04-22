@@ -40,7 +40,12 @@ Route.group(() => {
 	Route.post('contacts/departments/update/:id', 'Contact/DepartmentController.update') // Save Edited Item
 	Route.get('contacts/departments/delete/:id', 'Contact/DepartmentController.destroy') // Remove item
 
-	Route.get('contacts/messages', 'Contact/DepartmentController.index')
+	/**
+	 * CONTATOS
+	 *  Mensagens
+	 */
+	Route.get('contacts/messages', 'Contact/MessageController.index') // List Messages
+	Route.get('contacts/messages/view/:id', 'Contact/MessageController.view')
 
 }).middleware(['auth'])
 
