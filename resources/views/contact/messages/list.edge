@@ -47,13 +47,13 @@
 									<td>{{ message.name }}</td>
 									<td>{{ message.email }}</td>
 									<td>
-										@if( message.is_active == 1)
+										@if( message.read == 1)
 										Sim
 										@else
 										Não
 										@endif
 									</td>
-									<td>{{ message.created_at }}</td>
+									<td> {{ dateFormat(message.created_at,'DD/MM/YYYY HH:mm') }}</td>
 									<td>
 										<a href="/contacts/messages/view/{{ message.id }}" class="text-white btn btn-secondary">visualizar</a>
 										<a href="/contacts/messages/delete/{{ message.id }}" class="text-white btn btn-danger">Excluir</a>

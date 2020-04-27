@@ -14,4 +14,4 @@ database/*.sqlite
 # VSCode & Webstorm history directories
 .history
 .idea
-resources/views/AdminLTE-3.0.4
+resources/views/AdminLTE-3.0.4/

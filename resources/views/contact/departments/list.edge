@@ -56,9 +56,9 @@
 										Não
 										@endif
 									</td>
-									<td>{{ department.created_at }}</td>
+									<td> {{ dateFormat(department.created_at,'DD/MM/YYYY HH:mm') }}</td>
 									<td>
-										<a href="/contacts/departments/update/{{ department.id }}" class="text-white btn btn-secondary">Editar</a>
+										<a href="/contacts/departments/edit/{{ department.id }}" class="text-white btn btn-secondary">Editar</a>
 										<a href="/contacts/departments/delete/{{ department.id }}" class="text-white btn btn-danger">Excluir</a>
 									</td>
 								</tr>
