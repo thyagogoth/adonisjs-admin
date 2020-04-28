@@ -7,13 +7,13 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Mensagens</h1>
+					<h1>Banners</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/contacts/messages">Contato</a></li>
-						<li class="breadcrumb-item active">Mensagens</li>
+						<li class="breadcrumb-item"><a href="/contacts/messages">Banners</a></li>
+						<li class="breadcrumb-item active">Listagem</li>
 					</ol>
 				</div>
 			</div>
@@ -28,31 +28,34 @@
 				<div class="card">
 
 					<div class="card-body">
+						<a href="/banners/new" class="btn btn-info">
+							<i class="fas fa-plus"></i> Novo cadastro
+						</a>
 
 						<table class="datatable-list table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Nome</th>
-									<th>E-mail</th>
-									<th>Lida?</th>
+									<th>Título</th>
+									<th>Link</th>
+									<th>Ativo</th>
 									<th>Data cadastro</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody>
-								@each(message in messages)
+								@each(banner in banners)
 								<tr>
-									<td>{{ message.id }}</td>
-									<td>{{ message.name }}</td>
-									<td>{{ message.email }}</td>
+									<td>{{ banner.id }}</td>
+									<td>{{ banner.title }}</td>
+									<td>{{ banner.email }}</td>
 									<td>
-										{{ getBooleanValue(message.read) }}
+										{{ getBooleanValue(banner.is_active) }}
 									</td>
-									<td> {{ dateFormat(message.created_at,'DD/MM/YYYY HH:mm') }}</td>
+									<td> {{ dateFormat(banner.created_at,'DD/MM/YYYY HH:mm') }}</td>
 									<td>
-										<a href="/contacts/messages/view/{{ message.id }}" class="text-white btn btn-secondary">visualizar</a>
-										<a href="/contacts/messages/delete/{{ message.id }}" class="text-white btn btn-danger">Excluir</a>
+										<a href="/banners/edit/{{ banner.id }}" class="text-white btn btn-secondary">Editar</a>
+										<a href="/banners/delete/{{ banner.id }}" class="text-white btn btn-danger">Excluir</a>
 									</td>
 								</tr>
 								@endeach
@@ -60,9 +63,9 @@
 							<tfoot>
 								<tr>
 									<th>ID</th>
-									<th>Nome</th>
-									<th>E-mail</th>
-									<th>Lida?</th>
+									<th>Título</th>
+									<th>Link</th>
+									<th>Ativo</th>
 									<th>Data cadastro</th>
 									<th>&nbsp;</th>
 								</tr>

@@ -48,6 +48,21 @@ Route.group(() => {
 	Route.get('contacts/messages/view/:id', 'Contact/MessageController.view')
 	Route.get('contacts/messages/delete/:id', 'Contact/MessageController.destroy')
 
+	/**
+	 * ABOUT
+	 * Cadastro/Edição
+	 */
+	Route.get('about/edit', 'About/AboutController.showForm')
+	Route.post('about/edit', 'About/AboutController.store')
+
+	/**
+	 * BANNERS
+	 * Listagem
+	 */
+	Route.get('banners/list', 'Banner/BannerController.index')
+	Route.get('banners/new', 'Banner/BannerController.showForm')
+	Route.post('banners/new', 'Banner/BannerController.store')
+
 }).middleware(['auth'])
 
 // Rotas livres de sessão

@@ -1,0 +1,152 @@
+@layout('layout.index')
+@section('content')
+
+<div class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Novo item</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/banners/list">Banners</a></li>
+						<li class="breadcrumb-item active">Cadastro</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card card-secondary">
+						<div class="card-header">
+							<h3 class="card-title"><small>Cadastro de</small> Departamentos</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								@include('includes.notification')
+
+								<form action="/banners/new" role="form" id="quickForm" novalidate="novalidate" method="post">
+
+									{{ csrfField() }}
+
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="title">Título</label>
+													<input type="text" name="title" class="form-control" id="title" placeholder="Título do banner" value="{{ banner.title ? banner.title : '' }}" />
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+
+											<div class="col-md-2">
+												<div class="form-group">
+													<div class="icheck-primary d-inline">
+														<input type="checkbox" id="schedule_date" name="schedule_date"
+														@if(banner.schedule_date == 1)
+														checked
+														@endif
+														>
+														<label for="schedule_date">Agendar exibição</label>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-4">
+												<div class="form-group">
+													<div class="input-group">
+														<div class="input-group-prepend">
+															<span class="input-group-text">
+																<i class="far fa-calendar-alt"></i>
+															</span>
+														</div>
+														<input type="text" class="form-control float-right agendar-data" id="date">
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="url">Link</label>
+													<input type="text" name="url" class="form-control" id="url" placeholder="URL de direcionamento" value="{{ banner.url ? banner.url : '' }}" />
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group">
+													<label for="url">Destino</label>
+													<select class="form-control select2" style="width: 100%;">
+														<option value="_blank"
+															@if(banner.target == '_blank')
+															selected
+															@endif
+															>
+															Nova janela
+														</option>
+
+														<option value="_self"
+															@if(banner.target == '_self')
+															selected
+															@endif
+															>
+															Mesma janela
+														</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="url">Arquivo</label>
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="file" name="file" value="{{ banner.file }}">
+														<label class="custom-file-label" for="file">Escolha a imagem para o banner</label>
+													</div>
+												</div>
+										  	</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<div class="custom-control custom-switch">
+														<input type="checkbox" class="custom-control-input" id="is_active" name="is_active"
+														@if(banner.is_active == 1)
+														checked
+														@endif
+														>
+														<label class="custom-control-label" for="is_active">Ativo?</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="card-footer">
+										<a class="btn btn-default" href="/banners/list">Cancelar</a>
+										<button type="submit" class="btn btn-primary">Enviar</button>
+									</div>
+								</form>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+@endsection

@@ -37,8 +37,6 @@ class DepartmentController {
 			return response.redirect('/contacts/departments')
 
 		} catch ( error ) {
-			console.error(error)
-
 			session.flash({
 				notification: {
 					type: 'warning text-white',

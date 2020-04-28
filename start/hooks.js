@@ -27,4 +27,15 @@ hooks.after.providersBooted(() => {
 			return moment(date).format(formato)
 		else return "Não Informado"
 	})
+
+	/**
+	 * Função para retornar o valor booleano no formato Human
+	 */
+	View.global('getBooleanValue', (value) => {
+		if ( value == 1 ) {
+			return 'Sim'
+		} else {
+			return 'Não'
+		}
+	})
 })

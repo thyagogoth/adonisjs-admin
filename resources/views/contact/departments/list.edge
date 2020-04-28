@@ -50,11 +50,7 @@
 									<td>{{ department.title }}</td>
 									<td>{{ department.email }}</td>
 									<td>
-										@if( department.is_active == 1)
-										Sim
-										@else
-										Não
-										@endif
+										{{ getBooleanValue(department.is_active) }}
 									</td>
 									<td> {{ dateFormat(department.created_at,'DD/MM/YYYY HH:mm') }}</td>
 									<td>
