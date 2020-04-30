@@ -31,7 +31,7 @@
 							<div class="col-md-12">
 								@include('includes.notification')
 
-								<form action="/banners/new" role="form" id="quickForm" novalidate="novalidate" method="post" enctype="multipart/form-data">
+								<form action="/banners/edit/{{ banner.id }}" role="form" id="quickForm" novalidate="novalidate" method="post" enctype="multipart/form-data">
 
 									{{ csrfField() }}
 
@@ -116,6 +116,16 @@
 												</div>
 										  	</div>
 										</div>
+										@if(banner.file)
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="url">Arquivo</label>
+													<img class="img-fluid" src="/uploads/{{ banner.file }}" alt="">
+												</div>
+										  	</div>
+										</div>
+										@endif
 
 										<div class="row">
 											<div class="col-md-6">

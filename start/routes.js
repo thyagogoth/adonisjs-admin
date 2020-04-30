@@ -60,13 +60,20 @@ Route.group(() => {
 	 * Listagem
 	 */
 	Route.get('banners/list', 'Banner/BannerController.index')
+
 	Route.get('banners/new', 'Banner/BannerController.showForm')
 	Route.post('banners/new', 'Banner/BannerController.store')
+
+	Route.get('banners/edit/:id', 'Banner/BannerController.showUpdateForm')
+	Route.post('banners/edit/:id', 'Banner/BannerController.update')
 
 }).middleware(['auth'])
 
 // Rotas livres de sessão
 Route.group(() => {
+	Route.get('/new-test', 'Auth/RegisterController.createNewForTest')
+
+
 	Route.get('/register', 'Auth/RegisterController.showRegisterForm')
 	Route.post('/register', 'Auth/RegisterController.register').as('register')
 	Route.get('/register/confirm/:token', 'Auth/RegisterController.confirmEmail')

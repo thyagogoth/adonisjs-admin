@@ -8,7 +8,7 @@ class BannerSchema extends Schema {
 		this.create('banners', (table) => {
 			table.increments()
 			table.string('title', 120).notNullable()
-			table.boolean('schedule_date').defaultTo(0)
+			table.boolean('is_schedule').defaultTo(0)
 			table.timestamp('date_begin',['defaultToNow'])
 			table.date('date_end')
 			table.string('url', 255)
