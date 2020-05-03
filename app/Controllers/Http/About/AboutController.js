@@ -1,6 +1,6 @@
 'use strict'
 
-const About = use('App/Models/About')
+const About = use('App/Models/About/About')
 
 class AboutController {
 

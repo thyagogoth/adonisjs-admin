@@ -1,17 +1,17 @@
 @layout('layout.index')
 @section('content')
+
 <div class="content-wrapper">
 	<section class="content-header">
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Edição de cadastro</h1>
+					<h1>Novo item</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/contacts/messages">About</a></li>
-						<li class="breadcrumb-item active">Conteúdo</li>
+						<li class="breadcrumb-item active">Categorias</li>
 					</ol>
 				</div>
 			</div>
@@ -22,48 +22,44 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					@include('includes.notification')
-
 					<div class="card card-secondary">
 						<div class="card-header">
-							<h3 class="card-title"><small>Cadastro de</small> Conteúdo</h3>
+							<h3 class="card-title"><small>Cadastro de</small> Categorias</h3>
 						</div>
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-6">
+								@include('includes.notification')
 
-								<form action="/about/edit" role="form" id="quickForm" novalidate="novalidate" method="post">
+								<form action="/blog/categories/edit/{{ category.id }}" role="form" id="quickForm" novalidate="novalidate" method="post">
 
 									{{ csrfField() }}
-
-									<input type="hidden" name="id" value="{{ id }}" />
 
 									<div class="card-body">
 
 										<div class="form-group">
-											<label for="description">Conteúdo</label>
-											<textarea id="description" name="description" class="textarea-editor" placeholder="Conteúdo ...">{{ description ? description : '' }}
-											</textarea>
+											<label for="title">Departamento</label>
+											<input type="text" name="title" class="form-control" id="title" placeholder="Nome do departamento" value="{{ category.title }}" />
+										</div>
+
+										<div class="form-group">
+											<label for="slug">slug</label>
+											<input type="slug" name="slug" class="form-control" id="slug" placeholder="Slug" value="{{ category.slug }}" />
 										</div>
 
 										<div class="form-group">
 											<div class="custom-control custom-switch">
 												<input type="checkbox" class="custom-control-input" id="is_active" name="is_active"
-												@if(is_active == 1)
+												@if(category.is_active == 1)
 												checked
 												@endif
 												>
 												<label class="custom-control-label" for="is_active">Ativo?</label>
 											</div>
 										</div>
-										@if(updated_at)
-										<div class="form-group">
-											<label for="update_at">Última atualização: {{ dateFormat(updated_at, 'DD/MM/YYYY') + ' às ' + dateFormat(updated_at, 'HH:mm')   }}</label>
-										</div>
-										@endif
 
 									</div>
 									<div class="card-footer">
-										<a class="btn btn-default" href="/contacts/departments">Cancelar</a>
+										<a class="btn btn-default" href="/blog/categories">Cancelar</a>
 										<button type="submit" class="btn btn-primary">Enviar</button>
 									</div>
 								</form>

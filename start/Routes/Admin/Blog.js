@@ -17,6 +17,14 @@ Route.group( () => {
     /**
      * Posts no Blog
      */
+    Route.get('blog/posts', 'Blog/PostController.index')
+	Route.get('blog/posts/new', 'Blog/PostController.showCreateForm')
+    Route.post('blog/posts/new', 'Blog/PostController.store')
+
+	// Route.get('blog/posts/edit/:id', 'Blog/PostController.showUpdateForm')
+	// Route.post('blog/posts/edit/:id', 'Blog/PostController.update')
+
+    // Route.get('blog/posts/delete/:id', 'Blog/PostController.destroy')
 
 }).middleware(['auth'])
 

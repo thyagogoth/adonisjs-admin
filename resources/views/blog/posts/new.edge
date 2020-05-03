@@ -1,0 +1,203 @@
+@layout('layout.index')
+@section('content')
+
+{{ style('https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.css') }}
+
+<div class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Novo item</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/blogs/posts">Blog</a></li>
+						<li class="breadcrumb-item active">Posts</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card card-secondary">
+						<div class="card-header">
+							<h3 class="card-title"><small>Cadastro de</small> Post</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								@include('includes.notification')
+
+								<form action="/blog/posts/new" role="form" id="quickForm" novalidate="novalidate" method="post" id="files-uploader">
+
+									{{ csrfField() }}
+
+									<div class="card-body">
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="title">Titulo</label>
+													<input type="text" name="title" class="form-control .to-slug" id="title" placeholder="Título" value="{{ post.title ? post.title : '' }}" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="slug">Slug</label>
+													<input type="slug" name="slug" class="form-control" id="slug" placeholder="Slug" value="{{ post.slug ? post.slug : '' }}" />
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<select class="select2">
+														<option>-- Categoria</option>
+														@each(category in categories)
+														<option value="{{ category.id }}">{{ category.title }}</option>
+														@endeach
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="description">Conteúdo</label>
+													<textarea id="description" name="description" class="textarea-editor" placeholder="Conteúdo ...">{{ post.description ? post.description : '' }}
+													</textarea>
+												</div>
+											</div>
+										</div>
+
+										<!-- DropZone --
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<div class="fallback">
+														<input type="file" name="file" id="file" />
+													</div>
+												</div>
+											</div>
+										</div>
+										!-- / DropZone -->
+
+										<!--
+										<div class="dropzone" id="my-dropzone" name="mainFileUploader">
+											<div class="fallback">
+												<input name="file" type="file" multiple />
+											</div>
+										</div>
+										-->
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<div class="custom-control custom-switch">
+														<input type="checkbox" class="custom-control-input" id="is_active" name="is_active"
+														@if(post.is_active == 1)
+														checked
+														@endif
+														>
+														<label class="custom-control-label" for="is_active">Ativo?</label>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="card-footer">
+										<a class="btn btn-default" href="/blog/posts">Cancelar</a>
+										<button type="submit" class="btn btn-primary">Enviar</button>
+									</div>
+								</form>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js') }}
+<!--
+<script type="text/javascript">
+
+	Dropzone.options.myDropzone = {
+		url: 'http://localhost:3333/blog/posts/new',
+		autoProcessQueue: false,
+		uploadMultiple: false,
+		parallelUploads: 100,
+		maxFiles: 100,
+		acceptedFiles: 'image/*',
+		paramName: "file", // The name that will be used to transfer the file
+
+		init: function() {
+			this.on("success", function(file, serverResponse) {});
+
+			var myDropzone = this;
+
+			this.on("addedfile", function(file) {
+				var removeButton = Dropzone.createElement("<button>X</button>");
+				var _this = this;
+				file.previewElement.addEventListener("click", function() {
+					myDropzone.removeFile(file);
+				});
+
+			// Listen to the click event
+			removeButton.addEventListener("click", function(e) {
+				// Make sure the button click doesn't submit the form:
+				e.preventDefault();
+				e.stopPropagation();
+
+				// Remove the file preview.
+				_this.removeFile(file);
+				// If you want to the delete the file on the server as well,
+				// you can do the AJAX request here.
+				});
+
+				// Add the button to the file preview element.
+				file.previewElement.appendChild(removeButton);
+			});
+
+			// First change the button to actually tell Dropzone to process the queue.
+			document.querySelector("button[type=submit]").
+				addEventListener("click", function(e) {
+				// Make sure that the form isn't actually being sent.
+				e.preventDefault();
+				e.stopPropagation();
+				myDropzone.processQueue();
+			});
+
+			// Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
+			// of the sending event because uploadMultiple is set to true.
+			this.on("sendingmultiple", function() {
+			// Gets triggered when the form is actually being sent.
+			// Hide the success button or the complete form.
+			});
+			this.on("successmultiple", function(files, response) {
+			// Gets triggered when the files have successfully been sent.
+			// Redirect user or notify of success.
+			});
+			this.on("errormultiple", function(files, response) {
+			// Gets triggered when there was an error sending the files.
+			// Maybe show form again, and notify user of error
+			});
+		}
+
+	};
+</script>
+-->
+
+@endsection

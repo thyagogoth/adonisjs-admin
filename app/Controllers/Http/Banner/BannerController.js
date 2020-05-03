@@ -1,6 +1,6 @@
 'use strict'
 
-const Banner = use('App/Models/Banner')
+const Banner = use('App/Models/Banner/Banner')
 const moment = use('moment')
 const Helpers = use('Helpers')
 
@@ -34,10 +34,6 @@ class BannerController {
 			banner.date_begin = moment(request.input('schedule_date').split(' - ')[0],'DD/MM/YYYY').format('YYYY-MM-DD')
 			banner.date_end = moment(request.input('schedule_date').split(' - ')[1],'DD/MM/YYYY').format('YYYY-MM-DD')
 		}
-		console.clear()
-		console.log('------------------------------------')
-		console.log(banner)
-		console.log('------------------------------------')
 
 		banner.url = request.input('url')
 		banner.is_active = request.input('is_active') ? true : false
