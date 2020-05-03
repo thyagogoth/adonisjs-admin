@@ -25,7 +25,7 @@
 				<div class="col-md-12">
 					<div class="card card-secondary">
 						<div class="card-header">
-							<h3 class="card-title"><small>Cadastro de</small> Departamentos</h3>
+							<h3 class="card-title"><small>Cadastro de</small> Banner</h3>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
@@ -68,8 +68,12 @@
 																<i class="far fa-calendar-alt"></i>
 															</span>
 														</div>
-														<input type="text" class="form-control float-right agendar-data" name="schedule_date" id="date">
-													</div>
+													<input type="text" class="form-control float-right dater_range_picker" name="schedule_date" id="date" value="
+													@if(banner.schedule_date)
+													{{ banner.schedule_date }}
+													@endif
+													">
+												</div>
 												</div>
 											</div>
 										</div>
@@ -78,13 +82,13 @@
 											<div class="col-md-4">
 												<div class="form-group">
 													<label for="url">Link</label>
-													<input type="text" name="url" class="form-control" id="url" placeholder="URL de direcionamento" value="{{ banner.url ? banner.url : '' }}" />
+													<input type="text" name="url" class="form-control mask-link" id="url" placeholder="URL de direcionamento" value="{{ banner.url ? banner.url : '' }}" />
 												</div>
 											</div>
 											<div class="col-md-2">
 												<div class="form-group">
-													<label for="url">Destino</label>
-													<select class="form-control select2" style="width: 100%;">
+													<label for="target">Destino</label>
+													<select name="target" class="form-control select2" style="width: 100%;">
 														<option value="_blank"
 															@if(banner.target == '_blank')
 															selected
@@ -108,7 +112,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="url">Arquivo</label>
+													<label for="file">Arquivo</label>
 													<div class="custom-file">
 														<input type="file" class="custom-file-input" id="file" name="file" value="{{ banner.file }}">
 														<label class="custom-file-label" for="file">Escolha a imagem para o banner</label>
@@ -120,8 +124,8 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="url">Arquivo</label>
-													<img class="img-fluid" src="/uploads/{{ banner.file }}" alt="">
+													<label for="file">Arquivo</label>
+													<img class="img-fluid" src="/uploads/banners/{{ banner.file }}" alt="">
 												</div>
 										  	</div>
 										</div>

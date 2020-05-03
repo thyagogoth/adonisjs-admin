@@ -103,6 +103,29 @@ class RegisterController {
 		})
 		return response.redirect('/login')
 	}
+
+
+	async createNewForTest ( { request, response, session }) {
+		// create user
+		const user = await User.create( {
+			first_name: 'Thiago Fernando',
+			last_name: 'da Rosa',
+			occupation: 'Desenvolvedor WEB',
+			email: 'thyagogoth@gmail.com',
+			username: 'thyagogoth',
+			password: '4n0n3ff3ct',
+			is_active: 1
+		})
+
+		// display success message
+		session.flash({
+			notification: {
+				type: 'success',
+				message: `Usuário cadastrado com sucesso! Um e-mail foi enviado para ${user.email}`
+			}
+		})
+		return response.redirect('back')
+	}
 }
 
 module.exports = RegisterController

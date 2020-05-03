@@ -1,6 +1,6 @@
 'use strict'
 
-const Department = use('App/Models/Department')
+const Department = use('App/Models/Contacts/Department')
 
 class DepartmentController {
 

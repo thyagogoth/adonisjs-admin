@@ -11,29 +11,28 @@
 		Painel de Controle
 		@endif
 	</title>
+	<!-- Google Fonts imports -->
+	{{ style('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }}
 
+	<!-- Font Awesome -->
 	{{ style('plugins/fontawesome-free/css/all.min.css') }}
+	<!-- Ionicons -->
+	{{ style('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}
 	{{ style('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}
-
 	<!-- DataTables -->
 	{{ style('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}
 	{{ style('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}
-
 	<!-- Select2 -->
 	{{ style('plugins/select2/css/select2.min.css') }}
 	{{ style('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}
-
-	{{ style('dist/css/adminlte.min.css') }}
-
-	{{ style('plugins/summernote/summernote-bs4.css') }}
-	{{ style('dist/css/style.css') }}
-
-	{{ style('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }}
-
 	<!-- daterange picker -->
 	{{ style('plugins/daterangepicker/daterangepicker.css') }}
-
+	<!-- iCheck for checkboxes and radio inputs -->
 	{{ style('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}
+	<!-- Theme style -->
+	{{ style('dist/css/adminlte.min.css') }}
+	<!-- Custom style -->
+	{{ style('assets/css/style.css') }}
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
 	<div class="wrapper">
@@ -77,11 +76,11 @@
 	{{ script('plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}
 	<!-- date-range-picker -->
 	{{ script('plugins/daterangepicker/daterangepicker.js') }}
-
+	<!-- javascript scrollbar plugin -->
 	{{ script('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}
 	<!-- AdminLTE App -->
 	{{ script('dist/js/adminlte.js') }}
-
+	<!-- Data Tables -->
 	{{ script('plugins/datatables/jquery.dataTables.min.js') }}
 	{{ script('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}
 	{{ script('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}
@@ -93,66 +92,22 @@
 	{{ script('plugins/jquery-mapael/maps/usa_states.min.js') }}
 	{{ script('plugins/chart.js/Chart.min.js') }}
 
+	<!-- custom file button -->
+	{{ script('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}
+
 	@if(request.url() == '/')
 		{{ script('dist/js/pages/dashboard2.js') }}
 	@endif
 
-	<script>
-		$(function () {
+	<!-- CKEditor start -->
+	{{ script(assetsUrl('assets/plugins/ckeditor/ckeditor.js')) }}
 
-			$( function() {
-				if ( $('.select2').length > 0 )
-					$('.select2').select2()
-			})
+	<!-- slugify -->
+	{{ script(assetsUrl('assets/plugins/slugify/jquery.slugify.js')) }}
 
-			$( function() {
-				if ( $('.agendar-data').length > 0) {
-					$('.agendar-data').daterangepicker()
-				}
-			})
+	<!-- custom scripts -->
+	{{ script('assets/js/init.js') }}
+	{{ script('assets/js/mask.js') }}
 
-			if ( $('.datatable-list').length > 0 ) {
-
-				$('.datatable-list').DataTable({
-					"paging": false,
-					"lengthChange": false,
-					"searching": true,
-					"ordering": true,
-					"info": false,
-					"autoWidth": true,
-					"language": {
-						"lengthMenu": "Exibir _MENU_ registros por página",
-						"zeroRecords": "Não há cadastros para exibir :(",
-						"info": "Exibindo página _PAGE_ de _PAGES_",
-						"infoEmpty": "Nenhum registro encontrado :(",
-						"infoFiltered": "(filtered from _MAX_ total records)"
-					},
-				});
-
-			}
-		});
-	</script>
-
-	<!-- Summernote -->
-	{{ script('plugins/summernote/summernote-bs4.min.js') }}
-	<script>
-	$(function () {
-		// Summernote
-		if ( $('.textarea-editor').length ) {
-			$('.textarea-editor').summernote({})
-		}
-	})
-	</script>
-
-
-
-	{{ script('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}
-	<script>
-		$( function() {
-			if ( $('input[type="file"]').length > 0 ) {
-  				bsCustomFileInput.init();
-			}
-		})
-	</script>
 </body>
 </html>

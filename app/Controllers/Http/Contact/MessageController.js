@@ -1,7 +1,7 @@
 'use strict'
 
-const Message = use('App/Models/Message')
-const Department = use('App/Models/Department')
+const Message = use('App/Models/Contacts/Message')
+const Department = use('App/Models/Contacts/Department')
 
 class MessageController {
 

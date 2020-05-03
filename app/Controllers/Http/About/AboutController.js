@@ -7,7 +7,9 @@ class AboutController {
 	async showForm({ request, response, view }) {
 		var about = {}
 		const registro = await About.first()
+		console.log(registro)
 		if (registro) {
+
 			about = registro.toJSON()
 		}
 		return view.render('about.edit.edge', about)

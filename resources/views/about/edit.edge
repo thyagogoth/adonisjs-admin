@@ -1,6 +1,5 @@
 @layout('layout.index')
 @section('content')
-
 <div class="content-wrapper">
 	<section class="content-header">
 		<div class="container-fluid">
@@ -11,8 +10,8 @@
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/contacts/messages">Contato</a></li>
-						<li class="breadcrumb-item active">Departamentos</li>
+						<li class="breadcrumb-item"><a href="/contacts/messages">About</a></li>
+						<li class="breadcrumb-item active">Conteúdo</li>
 					</ol>
 				</div>
 			</div>
@@ -42,8 +41,7 @@
 
 										<div class="form-group">
 											<label for="description">Conteúdo</label>
-											<textarea style="width: 100%; height: 500px" id="description" name="description" class="textarea-editor" placeholder="Conteúdo ...">
-												{{ description }}
+											<textarea id="description" name="description" class="textarea-editor" placeholder="Conteúdo ...">{{ description ? description : null }}
 											</textarea>
 										</div>
 

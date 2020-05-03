@@ -32,7 +32,7 @@
 							<i class="fas fa-plus"></i> Novo cadastro
 						</a>
 
-						<table class="datatable-list table table-bordered table-striped">
+						<table class="datatable-list table table-bordered table-striped display">
 							<thead>
 								<tr>
 									<th>ID</th>
@@ -48,12 +48,12 @@
 								<tr>
 									<td>{{ banner.id }}</td>
 									<td>{{ banner.title }}</td>
-									<td>{{ banner.url }}</td>
+									<td>{{ banner.url ? banner.url : '' }}</td>
 									<td>
 										{{ getBooleanValue(banner.is_active) }}
 									</td>
 									<td> {{ dateFormat(banner.created_at,'DD/MM/YYYY HH:mm') }}</td>
-									<td>
+									<td class="text-center">
 										<a href="/banners/edit/{{ banner.id }}" class="text-white btn btn-secondary">Editar</a>
 										<a href="/banners/delete/{{ banner.id }}" class="text-white btn btn-danger">Excluir</a>
 									</td>

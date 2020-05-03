@@ -1,0 +1,77 @@
+@layout('layout.index')
+@section('content')
+
+<div class="content-wrapper">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Novo item</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item active">Categorias</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card card-secondary">
+						<div class="card-header">
+							<h3 class="card-title"><small>Cadastro de</small> Categorias</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								@include('includes.notification')
+
+								<form action="/blog/categories/edit/{{ category.id }}" role="form" id="quickForm" novalidate="novalidate" method="post">
+
+									{{ csrfField() }}
+
+									<div class="card-body">
+
+										<div class="form-group">
+											<label for="title">Departamento</label>
+											<input type="text" name="title" class="form-control" id="title" placeholder="Nome do departamento" value="{{ category.title }}" />
+										</div>
+
+										<div class="form-group">
+											<label for="slug">slug</label>
+											<input type="slug" name="slug" class="form-control" id="slug" placeholder="Slug" value="{{ category.slug }}" />
+										</div>
+
+										<div class="form-group">
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="is_active" name="is_active"
+												@if(category.is_active == 1)
+												checked
+												@endif
+												>
+												<label class="custom-control-label" for="is_active">Ativo?</label>
+											</div>
+										</div>
+
+									</div>
+									<div class="card-footer">
+										<a class="btn btn-default" href="/blog/categories">Cancelar</a>
+										<button type="submit" class="btn btn-primary">Enviar</button>
+									</div>
+								</form>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+@endsection
